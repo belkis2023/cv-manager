@@ -1,4 +1,4 @@
-import { IsInt, IsNotEmpty, IsOptional, IsString, Length, Max, Min } from 'class-validator';
+import { IsInt, IsNotEmpty, IsOptional, IsString, Length, Max, Min, IsArray } from 'class-validator';
 
 export class CreateCvDto {
     @IsString() @IsNotEmpty()
@@ -19,4 +19,7 @@ export class CreateCvDto {
     //expres enou optional 9bal string?
     @IsOptional() @IsString()
     path?: string;
+
+    @IsOptional() @IsArray() @IsInt({ each: true })
+    skillIds?: number[];
 }

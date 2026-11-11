@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
 import { CvService } from './cv.service';
 import { CreateCvDto } from './dto/create-cv.dto';
 import { UpdateCvDto } from './dto/update-cv.dto';
@@ -8,8 +8,8 @@ export class CvController {
   constructor(private readonly cvService: CvService) {}
 
   @Post()
-  create(@Body() createCvDto: CreateCvDto) {
-    return this.cvService.create(createCvDto);
+  create(@Body() dto: CreateCvDto) {
+    return this.cvService.create(dto);
   }
 
   @Get()
@@ -18,17 +18,17 @@ export class CvController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.cvService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.cvService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCvDto: UpdateCvDto) {
-    return this.cvService.update(+id, updateCvDto);
+  update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateCvDto) {
+    return this.cvService.update(id, dto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.cvService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.cvService.remove(id);
   }
 }
