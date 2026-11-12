@@ -82,13 +82,12 @@ async function bootstrap() {
             // That's why the same userId appears several times in the cv table:
             // it is the one-to-many relation.
             user: users[i % users.length],
-            //the fuck???  ->  answer: how 2 to 4 RANDOM skills are picked:
+            // how 2 to 4 RANDOM skills are picked:
             //  [...skills]            copy the array (don't reorder the original)
             //  .sort(() => Math.random() - 0.5)   shuffle: the comparison returns
             //                          a random positive/negative number, so the
             //                          order becomes random (not a perfectly
             //                          uniform shuffle, fine for fake data)
-            //  .slice(0, randNumber({min:2,max:4}))   keep the first 2, 3 or 4.
             skills: [...skills].sort(() => Math.random() - 0.5).slice(0, randNumber({ min: 2, max: 4 })),
         });
         await cvRepository.save(cv);

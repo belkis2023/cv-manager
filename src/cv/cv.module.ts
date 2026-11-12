@@ -10,7 +10,6 @@ import { Cv } from './entities/cv.entity';
 import { Skill } from '../skill/entities/skill.entity';
 
 @Module({
-  //what's this doingg  ->  answer:
   // forFeature([...]) registers entities in THIS module and creates one
   // Repository per entity, which can then be injected with @InjectRepository.
   // CvService needs TWO repositories:

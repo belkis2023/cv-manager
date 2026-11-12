@@ -10,8 +10,6 @@
 import { NotFoundException } from '@nestjs/common'
 import { DeepPartial, FindOptionsWhere, ObjectLiteral, Repository } from 'typeorm';
 
-//efhemmmm  ->  explanation of the whole file is in this header and below.
-
 // `abstract`: you can't do `new CrudService()`, it only exists to be extended.
 //
 // `<T extends ObjectLiteral & { id: number }>` reads as:

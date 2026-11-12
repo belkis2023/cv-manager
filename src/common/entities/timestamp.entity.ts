@@ -1,8 +1,7 @@
 // =====================================================================
 // timestamp.entity.ts - SHARED PARENT FOR ALL ENTITIES (factorisation)
 // =====================================================================
-// The slide says "Pensez à factoriser votre code pour ne pas réécrire la
-// même chose". Every table (cv, skill, user) wants the same three date
+// Every table (cv, skill, user) wants the same three date
 // columns, so we write them ONCE here and each entity does
 // `extends TimestampEntity`.
 
