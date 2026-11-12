@@ -24,9 +24,7 @@ export class Cv extends TimestampEntity {
     @Column()
     age!: number;
 
-    // Tunisian CIN (national id card) = 8 digits. `length: 8` limits the
-    // varchar to 8 characters. It is a string (not a number) so a leading 0
-    // is not lost.
+
     @Column({ length: 8 })
     cin!: string;
 
@@ -48,23 +46,6 @@ export class Cv extends TimestampEntity {
     @JoinTable() //what's this
     skills!: Skill[];
 
-
-    // Answer to "what's cascade": `onDelete: 'CASCADE'` is a DATABASE rule on
-    // the foreign key: if the User row is really DELETED, the database also
-    // deletes all the Cvs pointing to it (instead of refusing, or leaving
-    // orphans). Careful: our app uses SOFT delete (only sets deletedAt), so
-    // the row is never really deleted and this rule doesn't fire from the API.
-    // It matters only for a hard DELETE done directly in SQL.
-
-    // OLD VERSION (kept by the author, commented out): the same relation
-    // WITHOUT the explicit userId column. It worked, but then we can only
-    // reach the owner's id through cv.user.id, which requires loading the
-    // relation. Replaced by the version below.
-/*     @ManyToOne(() => User, (user) => user.cvs, { nullable: true, onDelete: 'CASCADE'})
-    user!: User;  */
-
-    //we're changing as we're doing this part: route protection and cv ownvership
-    //we want to expose the owner id on the cv entity
 
     // NEW: an explicit column `userId` holding the owner's id as a plain
     // number. This lets the service compare `cv.userId !== user.userId`
