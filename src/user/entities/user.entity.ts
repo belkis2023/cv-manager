@@ -5,6 +5,10 @@ import { Cv } from '../../cv/entities/cv.entity';
 
 @Entity()
 export class User extends TimestampEntity {
+
+    @Column({ default: 'user' })
+    role!: string;
+
     @PrimaryGeneratedColumn()
     id!: number;
 

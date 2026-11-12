@@ -10,6 +10,8 @@ import { Cv } from '../cv/entities/cv.entity'
 import { Skill } from '../skill/entities/skill.entity'
 import { User } from '../user/entities/user.entity'
 
+import * as bcrypt from 'bcrypt';
+
 const SKILLS = [
     'NestJS', 'Angular', 'React', 'Node.js',
     'TypeScript', 'PostgreSQL', 'Docker', 'Git',
@@ -30,12 +32,18 @@ async function bootstrap() {
 
     //users
     const users: User[] = [];
+
+    //after adding the auth part
+    const hashedPassword = await bcrypt.hash('123456', 10);
     for (let i=0; i<5; i++) {
         users.push(
             await userService.create({
                 username: `${randUserName()}${i}`,
                 email: `${i}${randEmail()}`,
-                password: String(randPassword()),
+                //password: String(randPassword()),
+                password: hashedPassword,
+                //adding the role: just the first user is admin
+                role: i === 0 ? 'admin' : 'user',
             }),
         );
     }

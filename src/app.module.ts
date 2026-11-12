@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { SkillModule } from './skill/skill.module';
 import { UserModule } from './user/user.module';
 import { CvModule } from './cv/cv.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { CvModule } from './cv/cv.module';
         synchronize: true,
       }),
     }),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
