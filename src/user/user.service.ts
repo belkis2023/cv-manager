@@ -1,3 +1,10 @@
+// =====================================================================
+// user.service.ts - business logic for User
+// =====================================================================
+// Identical in structure to SkillService: all CRUD is inherited from
+// CrudService<User>. The seed script uses this service to create users.
+// (Registration with password hashing is NOT here: it is in AuthService.)
+
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
